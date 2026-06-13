@@ -1,0 +1,1 @@
+export type State = 'In Progress' | 'Pending' | 'Completed';
