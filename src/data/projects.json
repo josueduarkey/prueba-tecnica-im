@@ -1,0 +1,52 @@
+[
+  {
+    "id": 101,
+    "title": "Website Redesign",
+    "client": "Corporativo Andes",
+    "description": "Migración completa del sitio corporativo a Next.js con nuevo branding.",
+    "status": "In Progress",
+    "startDate": "2023-10-01",
+    "manager": "Manager User",
+    "teamSize": 4
+  },
+  {
+    "id": 102,
+    "title": "Mobile App MVP",
+    "client": "Banca Móvil S.A.",
+    "description": "Desarrollo de versión inicial para iOS y Android usando React Native.",
+    "status": "Pending",
+    "startDate": "2023-11-15",
+    "manager": "Manager User",
+    "teamSize": 6
+  },
+  {
+    "id": 103,
+    "title": "Internal Dashboard",
+    "client": "Recursos Humanos",
+    "description": "Panel administrativo para gestión de RRHH.",
+    "status": "Completed",
+    "startDate": "2023-08-10",
+    "manager": "Admin User",
+    "teamSize": 3
+  },
+  {
+    "id": 104,
+    "title": "API Integration",
+    "client": "TiendaOnline",
+    "description": "Conexión con pasarela de pagos Stripe para el e-commerce.",
+    "status": "In Progress",
+    "startDate": "2023-10-20",
+    "manager": "Manager User",
+    "teamSize": 2
+  },
+  {
+    "id": 105,
+    "title": "Audit Logs System",
+    "client": "Seguridad TI",
+    "description": "Sistema de trazas para seguridad informática.",
+    "status": "Pending",
+    "startDate": "2023-12-01",
+    "manager": "Admin User",
+    "teamSize": 5
+  }
+]
