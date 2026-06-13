@@ -2,10 +2,10 @@ import { FormLogin } from "../components/login/FormLogin";
 import { Carousel } from "../components/ui/Carousel";
 
 const slides = [
-  { src: "/src/assets/imagen-1.png", alt: "Imagen de Impresos Múltiples" },
-  { src: "/src/assets/imagen-2.png", alt: "Imagen de Impresos Múltiples" },
-  { src: "/src/assets/imagen-3.jpg", alt: "Imagen de Impresos Múltiples" },
-  { src: "/src/assets/imagen-4.png", alt: "Imagen de Impresos Múltiples" },
+  { src: "/assets/imagen-1.png", alt: "Imagen de Impresos Múltiples" },
+  { src: "/assets/imagen-2.png", alt: "Imagen de Impresos Múltiples" },
+  { src: "/assets/imagen-3.jpg", alt: "Imagen de Impresos Múltiples" },
+  { src: "/assets/imagen-4.png", alt: "Imagen de Impresos Múltiples" },
 ];
 
 export default function Login() {
