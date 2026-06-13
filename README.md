@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Sistema de Gestión de Proyectos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Prueba técnica frontend para Impresos Múltiples S.A. de C.V. Aplicación de gestión de proyectos con autenticación, control de acceso por roles y simulación de API.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript
+- Vite
+- React Router 7
+- Tailwind CSS 4
+- Context API para estado global
 
-## React Compiler
+## Instalación y ejecución
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+La aplicación queda disponible en `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Otros comandos:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build     # build de producción
+npm run preview   # sirve el build
 ```
+
+## Cuentas de prueba
+
+La contraseña de todas las cuentas es `123`.
+
+| Rol | Correo | Permisos |
+|-----|--------|----------|
+| Admin | admin@test.com | Ver, crear, editar y eliminar proyectos. Ver usuarios. |
+| Manager | manager@test.com | Ver proyectos y actualizar su estado. |
+| Viewer | viewer@test.com | Solo lectura de proyectos. |
+
+## Funcionalidades
+
+- Login con validación y mensaje de error claro.
+- Rutas protegidas: sin sesión redirige al login; sesión persistida en `localStorage`.
+- Dashboard con listado de proyectos (Nombre, Cliente, Estado, Fecha de inicio y Asignado a).
+- Filtros por estado y búsqueda por nombre.
+- Vista de detalle del proyecto en modal.
+- CRUD de proyectos y cambio de estado según permisos del rol.
+- Página de usuarios (solo Admin).
+- Estados de carga, error y vacío, con spinners y notificaciones (toasts).
+
+## Decisiones técnicas que tome 
+
+- **Arquitectura por responsabilidades**: `services` (simulación de API), `hooks` y `context` (lógica de negocio y estado global), `components` (UI reutilizable), `pages` (vistas) y `routes` (navegación y guardas).
+- **Simulación de API**: cada servicio usa `Promise` + `setTimeout` para imitar latencia de red y poder ejercitar los estados de carga, éxito y error.
+- **Control de acceso**: un mapa `rolePermissions` define los permisos por rol y el hook `usePermissions` expone `can(permission)`. La UI y las rutas (`ProtectedRoute`, `RoleGuard`) renderizan condicionalmente según ese permiso, evitando lógica de roles dispersa.
+- **Estado global con Context API**: `AuthContext` gestiona la sesión y `ToastContext` el feedback visual, evitando prop-drilling.
+- **TypeScript** para tipar entidades (`Project`, `User`, `Role`) y reducir errores en tiempo de desarrollo.
+- **Tailwind CSS** con los colores de marca definidos como tokens en `index.css`.
